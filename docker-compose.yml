@@ -16,7 +16,4 @@ services:
         environment:
             TZ: "Asia/Jakarta"
             GITLAB_OMNIBUS_CONFIG: |
-                external_url 'https://lab.tog.co.id'
-                nginx['redirect_http_to_https'] = true
-                registry_nginx['redirect_http_to_https'] = true
-                mattermost_nginx['redirect_http_to_https'] = true
+                external_url 'http://lab.tog.co.id:8000'
