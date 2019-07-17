@@ -1,0 +1,22 @@
+version: '3.6'
+
+services:
+    gitlab:
+        image: gitlab/gitlab-ce:latest
+        restart: always
+        hostname: lab.tog.co.id
+        ports:
+            - "${HTTP_PORT:-80}:80"
+            - "${HTTPS_PORT:-443}:443"
+            - "${SSH_PORT:-22}:22"
+        volumes:
+            - /opt/data/gitlab/config:/etc/gitlab
+            - /opt/data/gitlab/logs:/var/log/gitlab
+            - /opt/data/gitlab/data:/var/opt/gitlab
+        environment:
+            TZ: "Asia/Jakarta"
+            GITLAB_OMNIBUS_CONFIG: |
+                external_url 'https://lab.tog.co.id'
+                nginx['redirect_http_to_https'] = true
+                registry_nginx['redirect_http_to_https'] = true
+                mattermost_nginx['redirect_http_to_https'] = true
