@@ -1,5 +1,6 @@
 version: '3.6'
-
+networks:
+    gitlab: {}
 services:
     gitlab:
         image: gitlab/gitlab-ce:latest
@@ -10,10 +11,23 @@ services:
             - "${HTTPS_PORT:-443}:443"
             - "${SSH_PORT:-22}:22"
         volumes:
-            - /opt/data/gitlab/config:/etc/gitlab
-            - /opt/data/gitlab/logs:/var/log/gitlab
-            - /opt/data/gitlab/data:/var/opt/gitlab
+            - ./data/gitlab/config:/etc/gitlab
+            - ./data/gitlab/logs:/var/log/gitlab
+            - ./data/gitlab/data:/var/opt/gitlab
         environment:
             TZ: "Asia/Jakarta"
             GITLAB_OMNIBUS_CONFIG: |
                 external_url 'http://lab.tog.co.id:8000'
+        networks:
+            gitlab:
+                aliases:
+                    - lab.tog.co.id
+    gitlab-runner:
+        image: gitlab/gitlab-runner:latest
+        restart: always
+        volumes:
+            - ./data/gitlab/runner:/etc/gitlab-runner
+        environment:
+            - TZ=Asia/Jakarta
+        networks:
+            - gitlab
