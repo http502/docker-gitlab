@@ -9,6 +9,7 @@ networks:
 services:
   gitlab:
     image: gitlab/gitlab-ce:latest
+    container_name: gitlab
     restart: always
     hostname: lab.tog.co.id
     ports:
@@ -28,8 +29,9 @@ services:
         ipv4_address: 172.16.238.2
         aliases:
           - lab.tog.co.id
-  gitlab-runner:
+  runner:
     image: gitlab/gitlab-runner:latest
+    container_name: gitlab-runner
     restart: always
     volumes:
       - ./data/gitlab/runner:/etc/gitlab-runner
