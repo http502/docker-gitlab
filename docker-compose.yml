@@ -4,7 +4,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: "172.21.0.0/24"
+        - subnet: "172.16.238.0/24"
     name: gitlab
 services:
   gitlab:
@@ -22,10 +22,10 @@ services:
     environment:
       TZ: "Asia/Jakarta"
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://lab.tog.co.id:8000'
+        external_url 'http://lab.tog.co.id'
     networks:
       gitlab:
-        ipv4_address: 172.21.0.2
+        ipv4_address: 172.16.238.2
         aliases:
           - lab.tog.co.id
   gitlab-runner:
@@ -39,4 +39,4 @@ services:
       - REGISTER_LOCKED=false
     networks:
       gitlab:
-        ipv4_address: 172.21.0.3
+        ipv4_address: 172.16.238.3
