@@ -1,35 +1,42 @@
 version: '3.6'
 networks:
-    gitlab: {}
+  gitlab:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.21.0.0/24"
+    name: gitlab
 services:
-    gitlab:
-        image: gitlab/gitlab-ce:latest
-        restart: always
-        hostname: lab.tog.co.id
-        ports:
-            - "${HTTP_PORT:-80}:80"
-            - "${HTTPS_PORT:-443}:443"
-            - "${SSH_PORT:-22}:22"
-        volumes:
-            - ./data/gitlab/config:/etc/gitlab
-            - ./data/gitlab/logs:/var/log/gitlab
-            - ./data/gitlab/data:/var/opt/gitlab
-        environment:
-            TZ: "Asia/Jakarta"
-            GITLAB_OMNIBUS_CONFIG: |
-                external_url 'http://lab.tog.co.id:8000'
-        networks:
-            gitlab:
-                aliases:
-                    - lab.tog.co.id
-    gitlab-runner:
-        image: gitlab/gitlab-runner:latest
-        restart: always
-        volumes:
-            - ./data/gitlab/runner:/etc/gitlab-runner
-            - /var/run/docker.sock:/var/run/docker.sock
-        environment:
-            - TZ=Asia/Jakarta
-            - REGISTER_LOCKED=false
-        networks:
-            - gitlab
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    restart: always
+    hostname: lab.tog.co.id
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+      - "${SSH_PORT:-22}:22"
+    volumes:
+      - ./data/gitlab/config:/etc/gitlab
+      - ./data/gitlab/logs:/var/log/gitlab
+      - ./data/gitlab/data:/var/opt/gitlab
+    environment:
+      TZ: "Asia/Jakarta"
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://lab.tog.co.id:8000'
+    networks:
+      gitlab:
+        ipv4_address: 172.21.0.2
+        aliases:
+          - lab.tog.co.id
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    restart: always
+    volumes:
+      - ./data/gitlab/runner:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=Asia/Jakarta
+      - REGISTER_LOCKED=false
+    networks:
+      gitlab:
+        ipv4_address: 172.21.0.3
