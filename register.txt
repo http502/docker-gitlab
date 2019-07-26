@@ -1,4 +1,4 @@
-docker-compose exec gitlab-runner \
+docker-compose exec runner \
     gitlab-runner register \
     -n --locked=false --run-untagged \
     --tag-list master -r QezkmKTNBjeE3AFoBsjX \
