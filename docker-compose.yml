@@ -17,9 +17,9 @@ services:
       - "${HTTPS_PORT:-443}:443"
       - "${SSH_PORT:-22}:22"
     volumes:
-      - ./data/gitlab/config:/etc/gitlab
-      - ./data/gitlab/logs:/var/log/gitlab
-      - ./data/gitlab/data:/var/opt/gitlab
+      - /opt/data/gitlab/config:/etc/gitlab
+      - /opt/data/gitlab/logs:/var/log/gitlab
+      - /opt/data/gitlab/data:/var/opt/gitlab
     environment:
       TZ: "Asia/Jakarta"
       GITLAB_OMNIBUS_CONFIG: |
@@ -34,7 +34,7 @@ services:
     container_name: gitlab-runner
     restart: always
     volumes:
-      - ./data/gitlab/runner:/etc/gitlab-runner
+      - /opt/data/gitlab/runner:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - TZ=Asia/Jakarta
