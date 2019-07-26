@@ -34,7 +34,7 @@ services:
     container_name: gitlab-runner
     restart: always
     volumes:
-      - /opt/data/gitlab/runner:/etc/gitlab-runner
+      - ./data/gitlab/runner:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - TZ=Asia/Jakarta
