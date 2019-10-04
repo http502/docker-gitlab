@@ -9,6 +9,7 @@ check_interval = 0
   url = "http://lab.tog.co.id/"
   token = "gYsnaR2YfhT3s79P3xFc"
   executor = "docker"
+  environment: [ "TZ=Asia/Jakarta" ]
   [runners.custom_build_dir]
   [runners.docker]
     tls_verify = false
@@ -18,7 +19,8 @@ check_interval = 0
     disable_entrypoint_overwrite = false
     oom_kill_disable = false
     disable_cache = false
-    volumes = ["/cache"]
+    volumes = [ "/cache" ]
+    environment: [ "TZ=Asia/Jakarta" ]
     network_mode = host
     shm_size = 0
   [runners.cache]
