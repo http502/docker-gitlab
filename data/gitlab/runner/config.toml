@@ -5,11 +5,11 @@ check_interval = 0
   session_timeout = 1800
 
 [[runners]]
-  name = "d020d945ea57"
+  name = "19868b4cd3af"
   url = "http://lab.example.com/"
-  token = "gYsnaR2YfhT3s79P3xFc"
+  token = "jbJsUffo9ZdN_7iZbsY8"
   executor = "docker"
-  environment: [ "TZ=Asia/Jakarta" ]
+  environment = ["TZ=Asia/Jakarta"]
   [runners.custom_build_dir]
   [runners.docker]
     tls_verify = false
@@ -19,9 +19,8 @@ check_interval = 0
     disable_entrypoint_overwrite = false
     oom_kill_disable = false
     disable_cache = false
-    volumes = [ "/cache" ]
-    environment: [ "TZ=Asia/Jakarta" ]
-    network_mode = host
+    volumes = ["/cache"]
+    network_mode = "host"
     shm_size = 0
   [runners.cache]
     [runners.cache.s3]

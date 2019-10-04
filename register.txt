@@ -1,4 +1,4 @@
-docker-compose exec runner gitlab-runner register -n --locked=false --run-untagged --tag-list master -r ZXqBgr58tvLxAfxJoXZK -u http://lab.tog.co.id/ --docker-image alpine:latest --executor docker --docker-cpus 2 --docker-network-mode host
+docker-compose exec runner gitlab-runner register -n --locked=false --run-untagged --tag-list master -r xp9xcTwGxQ8QTi3dd68x -u http://lab.example.com:8765/ --docker-image alpine:latest --executor docker --docker-cpus 2 --docker-network-mode host --docker-volumes '/cache' --env 'TZ=Asia/Jakarta'
     # --docker-extra-hosts lab.tog.co.id:172.16.238.2 \
     # --docker-extra-hosts runnerlab.tog.co.id:172.16.238.3
 
