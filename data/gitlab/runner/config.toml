@@ -6,7 +6,7 @@ check_interval = 0
 
 [[runners]]
   name = "d020d945ea57"
-  url = "http://lab.tog.co.id/"
+  url = "http://lab.example.com/"
   token = "gYsnaR2YfhT3s79P3xFc"
   executor = "docker"
   environment: [ "TZ=Asia/Jakarta" ]
