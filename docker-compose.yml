@@ -45,6 +45,8 @@ services:
     restart: always
     volumes:
       - ./data/gitlab/runner:/etc/gitlab-runner
+      - ./data/gitlab/cache:/var/gitlab/cache
+      - ./data/gitlab/secrets:/var/gitlab/secrets:ro
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - TZ=Asia/Jakarta

@@ -3,5 +3,7 @@
 !/gitlab/
 /gitlab/*
 !/gitlab/runner/
+!/gitlab/secrets/
+!/gitlab/cache/
 /gitlab/runner/*
 !/gitlab/runner/config.toml
