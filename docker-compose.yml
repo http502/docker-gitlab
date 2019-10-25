@@ -46,6 +46,8 @@ services:
     volumes:
       - ./data/gitlab/runner:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
+      - ${RUNNER_CACHE_DIR:-./data/gitlab/cache}:/opt/data/gitlab/cache:rw
+      - ${RUNNER_SECRET_DIR:-./data/gitlab/secrets}:/opt/data/gitlab/secrets:rw
     environment:
       - TZ=Asia/Jakarta
       - REGISTER_LOCKED=false
