@@ -42,7 +42,6 @@ services:
   runner:
     image: gitlab/gitlab-runner:latest
     container_name: gitlab-runner
-    restart: always
     volumes:
       - ./data/gitlab/runner:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
