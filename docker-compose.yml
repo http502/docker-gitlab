@@ -24,6 +24,12 @@ services:
       TZ: "Asia/Jakarta"
       GITLAB_OMNIBUS_CONFIG: |
         external_url "${PROTOCOL}://${DOMAIN_NAME}"
+        letsencrypt["enable"] = true
+        letsencrypt["auto_renew"] = true
+        letsencrypt["contact_emails"] = ["${GMAIL_USER}"]
+        letsencrypt["auto_renew_hour"] = "2"
+        letsencrypt["auto_renew_minute"] = "0"
+        letsencrypt["auto_renew_day_of_month"] = "*/30"
         gitlab_rails["smtp_enable"] = true
         gitlab_rails["smtp_address"] = "smtp.gmail.com"
         gitlab_rails["smtp_port"] = 587
