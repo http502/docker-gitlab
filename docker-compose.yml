@@ -24,6 +24,9 @@ services:
       TZ: "Asia/Jakarta"
       GITLAB_OMNIBUS_CONFIG: |
         external_url "${PROTOCOL}://${DOMAIN_NAME}"
+        registry_external_url "${PROTOCOL}://${DOMAIN_REGISTRY}"
+        mattermost_external_url "${PROTOCOL}://${DOMAIN_MATTERMOST}"
+        nginx["listen_addresses"] = ["0.0.0.0", "[::]"]
         letsencrypt["enable"] = true
         letsencrypt["auto_renew"] = true
         letsencrypt["contact_emails"] = ["${GMAIL_USER}"]
