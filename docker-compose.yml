@@ -27,6 +27,7 @@ services:
         registry_external_url "${PROTOCOL}://${DOMAIN_REGISTRY}"
         mattermost_external_url "${PROTOCOL}://${DOMAIN_MATTERMOST}"
         nginx["listen_addresses"] = ["0.0.0.0", "[::]"]
+        gitlab_rails["gitlab_shell_ssh_port"] = ${SSH_PORT:-22}
         letsencrypt["enable"] = true
         letsencrypt["auto_renew"] = true
         letsencrypt["contact_emails"] = ["${GMAIL_USER}"]
@@ -48,19 +49,19 @@ services:
         ipv4_address: 172.16.238.2
         aliases:
           - ${DOMAIN_NAME}
-  runner:
-    image: gitlab/gitlab-runner:latest
-    container_name: gitlab-runner
-    volumes:
-      - ./data/gitlab/runner:/etc/gitlab-runner
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ${RUNNER_CACHE_DIR:-./data/gitlab/cache}:/opt/data/gitlab/cache:rw
-      - ${RUNNER_SECRET_DIR:-./data/gitlab/secrets}:/opt/data/gitlab/secrets:rw
-    environment:
-      - TZ=Asia/Jakarta
-      - REGISTER_LOCKED=false
-    networks:
-      gitlab:
-        ipv4_address: 172.16.238.3
-    extra_hosts:
-      - "${DOMAIN_NAME}:172.16.238.2"
+#  runner:
+#    image: gitlab/gitlab-runner:latest
+#    container_name: gitlab-runner
+#    volumes:
+#      - ./data/gitlab/runner:/etc/gitlab-runner
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - ${RUNNER_CACHE_DIR:-./data/gitlab/cache}:/opt/data/gitlab/cache:rw
+#      - ${RUNNER_SECRET_DIR:-./data/gitlab/secrets}:/opt/data/gitlab/secrets:rw
+#    environment:
+#      - TZ=Asia/Jakarta
+#      - REGISTER_LOCKED=false
+#    networks:
+#      gitlab:
+#        ipv4_address: 172.16.238.3
+#    extra_hosts:
+#      - "${DOMAIN_NAME}:172.16.238.2"
